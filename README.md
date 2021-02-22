@@ -12,7 +12,7 @@ Para el projecto utilizaremos el framework Django 3.1.6, con la siguiente estruc
   * manage.py
   * db.cnf
   
-Dentro del repositorio cada participante tiene que tener un archivo db.cnf con su conexion a la base de datos y tener las librerias de requerimeintos que se espicifican.
+Dentro del repositorio cada participante tiene que tener un archivo my.cnf con su conexion a la base de datos y tener las librerias de requerimeintos que se espicifican.
 
 ## Roadmap
 La idea es comenzar haciendo los modelos y sus vistas por separado despues ir agregando funcionalidades, para luego integral los usuarios. 
