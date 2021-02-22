@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .models import categoria
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .models import categoria
 
 # Create your views here.
 class listaCategoria(ListView):
@@ -10,3 +11,11 @@ class listaCategoria(ListView):
 class detalleCategoria(DetailView):
     model = categoria
     template_name = 'categoria/detalleCategoria.html'
+
+class crearCategoria(CreateView):
+    model = categoria
+    template_name = 'categoria/crearCategoria.html'
+    fields = [
+        'nombre',
+        'desc',
+    ]
