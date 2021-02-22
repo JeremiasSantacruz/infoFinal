@@ -1,1 +1,50 @@
-<p> placeholder </p>
+{% extends "base.html" %}
+
+{% block title %} Categorias! {% endblock %}
+
+{% block content %}
+<div class='rounder'>
+    <h1 class='text-center rounder'> Categorias </h1>
+<div class="container">
+
+    {% for c in categoria_list %}
+    
+    <div class="row border" >
+        <div class='col p-1'>
+        <a href="categoria/{{c.id}}">
+            {{c.id}}
+        </a>
+        </div>        
+      <div class="col p-2">
+        {{c.nombre}}
+      </div>
+      <div class="col p-6"> 
+        {{ c.desc }}
+        </div>
+    </div>
+    {% endfor %}
+
+<!--- Probando tablas de boostrap
+<table class="table table-success table-striped">
+    <thead>
+     <tr>
+       <th scope="col">id</th>
+       <th scope="col">Nombre</th>
+       <th scope="col">Descripcion</th>
+     </tr>
+    </thead>
+    <tbody>
+    {% for c in categoria_list %}
+    <tr>
+        <th scope="row" href='categoria/{{c.id}}'>{{c.id}}</th>
+        <td>{{c.nombre}}</td>
+        <td>{{c.desc}}</td>
+    </tr>
+    {% endfor %}
+---> 
+
+    </tbody>
+</table>
+
+</div>
+{% endblock %}
