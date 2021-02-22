@@ -21,7 +21,7 @@ Nombre | Estados
 --------|--------
 Publicacion | :x:  
 Denuncias  | :x:
-Categorias | :x: 
+Categorias | Vistas basicas hechas :construction_worker: 
 Chat  | :x:
 Usuarios | :warning: 
 
