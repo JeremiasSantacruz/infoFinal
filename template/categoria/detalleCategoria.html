@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} {{categoria.nombre}} {% endblock %}
+
+{% block content %}
+<div class='rounder'>
+    <h1 class='text-center rounder'> {{categoria.nombre}} </h1>
+</div>
+<div class="container">
+
+    {% for c in categoria.publicacion_set.all %}
+    
+    <div class="row border" >
+        <div class='col p-1'>
+        <a href="{% url 'publicacion:detalle' p.id %} >
+            {{c.id}}
+        </a>
+        </div>        
+      <div class="col p-2">
+        {{p.titulo}}
+      </div>
+      <div class="col p-6"> 
+        {{p.desc}}
+        </div>
+    </div>
+
+    {% endfor %}
+{% endblock %}
