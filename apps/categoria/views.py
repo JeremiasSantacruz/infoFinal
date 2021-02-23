@@ -21,6 +21,9 @@ class crearCategoria(CreateView):
         'desc',
     ]
 
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('categoria:lista')
+
 class updateCategoria(UpdateView):
     model = Categoria
     #success_url = reverse('categoria:lista')
@@ -34,4 +37,5 @@ class updateCategoria(UpdateView):
 
 class deleteCategoria(DeleteView):
     model = Categoria
+    template_name = 'categoria/categoria_delete.html'
     success_url = reverse_lazy('categoria:lista')
