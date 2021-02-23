@@ -7,11 +7,11 @@
     <h1 class='text-center rounder'> Categorias </h1>
 <div class="container">
 
-    {% for c in categoria_list %}
+    {% for c in categorias %}
     
     <div class="row border" >
         <div class='col p-1'>
-        <a href="{% url 'categoria_detalle' c.id %}">
+        <a href="{% url 'categoria:detalle' c.id %}">
             {{c.id}}
         </a>
         </div>        

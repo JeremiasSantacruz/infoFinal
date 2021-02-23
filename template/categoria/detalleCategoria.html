@@ -6,13 +6,16 @@
 <div class='rounder'>
     <h1 class='text-center m-2 '> {{categoria.nombre}} </h1>
 </div>
-<div class="text-rigth">
+<div class="text-right">
 
-  <button type="button" class="btn btn-info ml-2" href="{% url 'categoria_actualizar' categoria.id %}">Actualizar</button>
-  <button type="button" class="btn btn-warning" href="{% url 'categoria_eliminar' categoria.id %}"> Eliminar </button>
+  <a href="{% url 'categoria:actualizar' categoria.id %}">
+    <button type="button" class="btn btn-info ml-2" >Actualizar</button>
+  </a>
+  <a href="{% url 'categoria:eliminar' categoria.id %}"
+    <button type="button" class="btn btn-warning" > Eliminar </button>
+  </a>
 
 <div class="container">
-
     {% for p in categoria.publicacion_set.all %}
     
     <div class="row border" >

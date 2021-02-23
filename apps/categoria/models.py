@@ -16,4 +16,4 @@ class Categoria(models.Model):
         Cuando updateView y CreateView son existosa en ves de definir el succes_url
         esas clase usan get_absolute_url
         """
-        return reversed ('categoria:lista', kwargs={'pk': self.pk})
+        return reversed ('categoria:lista')
