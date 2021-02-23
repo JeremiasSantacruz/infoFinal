@@ -11,7 +11,7 @@
     
     <div class="row border" >
         <div class='col p-1'>
-        <a href="{% url 'detalle' c.id %}">
+        <a href="{% url 'categoria_detalle' c.id %}">
             {{c.id}}
         </a>
         </div>        
@@ -41,10 +41,9 @@
         <td>{{c.desc}}</td>
     </tr>
     {% endfor %}
----> 
-
+ 
     </tbody>
 </table>
-
+--->
 </div>
 {% endblock %}

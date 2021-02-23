@@ -4,16 +4,21 @@
 
 {% block content %}
 <div class='rounder'>
-    <h1 class='text-center rounder'> {{categoria.nombre}} </h1>
+    <h1 class='text-center m-2 '> {{categoria.nombre}} </h1>
 </div>
+<div class="text-rigth">
+
+  <button type="button" class="btn btn-info ml-2" href="{% url 'categoria_actualizar' categoria.id %}">Actualizar</button>
+  <button type="button" class="btn btn-warning" href="{% url 'categoria_eliminar' categoria.id %}"> Eliminar </button>
+
 <div class="container">
 
-    {% for c in categoria.publicacion_set.all %}
+    {% for p in categoria.publicacion_set.all %}
     
     <div class="row border" >
         <div class='col p-1'>
         <a href="{% url 'publicacion:detalle' p.id %} >
-            {{c.id}}
+            {{p.id}}
         </a>
         </div>        
       <div class="col p-2">
