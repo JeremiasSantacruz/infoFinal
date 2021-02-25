@@ -26,6 +26,7 @@ class CrearCategoria(CreateView):
     Formulario generico, deprecaded
     """
     model = Categoria
+    template_name = 'categoria/categoria_crear.html"
     fields = [
         'nombre',
         'desc',
@@ -36,6 +37,7 @@ class UpdateCategoria(UpdateView):
     Formulario generico, deprecaded
     """
     model = Categoria
+    template_name = 'categoria/categoria_actualizar.html'
     #success_url = reverse('categoria:lista')
     fields = [
         'nombre',
