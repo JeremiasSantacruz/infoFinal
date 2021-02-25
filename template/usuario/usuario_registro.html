@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %} Nuevo Usuario {% endblock %}
+
+{% block content %} 
+<div class="col-6 mx-auto">
+    <div class="card  ">
+        <div clas="card-header text-center">
+            Nuevo usuario
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="fieldWrapper mt-2 mb-2">
+                    {{ field.errors }}
+                    {{ field.label_tag }} {{ field }}
+                </div>
+                {% endfor %}
+                <button class="btn btn-success text-center" type="submit">Registrarse</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
