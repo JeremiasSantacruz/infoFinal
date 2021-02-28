@@ -16,11 +16,13 @@
     <p>Asi  ves la pagina</p>
     {% endif %}
 {% endif %}
+
 <div class="card col-6 mx-auto mt-5 bg-light">
 <div class="card-title bg-info text-center">
     <h1>Login</h1>
 </div>
-<div class="card-body">
+<div class="card-body" >
+{% if not user.is_authenticated %}
     <form method="post" action="{% url 'usuario:login' %}">
 {% csrf_token %}
 <table>
@@ -37,6 +39,9 @@
 <button class="btn btn-success mt-2" type="submit" >Ingresar</button>
 <input type="hidden" name="next" value="{{ next }}">
 </form>
+{% else %}
+<a href="{% url 'usuario:logout' %}"<div>{{user.username}} logeado </div></a>
+{% endif %}
 
 </div>
 </div>

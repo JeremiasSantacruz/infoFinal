@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+
+{% block title %} Cerrar session {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <div class="col-6 card mx-auto mt-5">
+        <div class="card-title bg-info ">
+           <h1> Logout </h1>
+        </div>
+
+        <div class="card-body bg-light">
+            {{user.username}}, Estas seguro que quieres cerrar sesion? 
+            <form method="post" action="{% url 'usuario:logout' %}">
+                {% csrf_token %}
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                {% endif %}
+
+                <button class="btn btn-danger" type="submit">Cerrar sesion</button>
+            </form>
+        </div>
+    </div>
+
+{% else %}
+    <div class="card col-6 mx-auto mt-2">
+        <div class="card-body bg-light">
+            No se dectecta ninguna cuenta activa.
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}

@@ -15,5 +15,9 @@ class RegistroUsuario(CreateView):
 
 class UsuarioLogin(LoginView): #Tengo que refactorar a LoginUsuario
     template_name = 'usuario/login.html'
-    
-'
+    redirect_field_name = 'usuario/logout.html'
+
+class UsuarioLogout(LogoutView):
+    template_name = 'usuario/logout.html'
+
+

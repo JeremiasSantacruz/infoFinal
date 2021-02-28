@@ -6,4 +6,4 @@ class RegistroUsuarioForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = Usuario
-        fields = UserCreationForm.Meta.fields + ('direccion', 'email', 'first_name', 'last_name')
+        fields = UserCreationForm.Meta.fields + ('zona', 'email', 'first_name', 'last_name')
