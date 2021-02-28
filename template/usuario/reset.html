@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Olvidaste la contrasenia?{% endblock %}
+
+{% block content %}
+  <h1>Olvidaste la contrasenia?</h1>
+  <p>Escribe tu email abajo y vamos a enviarte un email con las intrucciones a seguir.</p>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Enviar">
+  </form>
+{% endblock %}

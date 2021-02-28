@@ -28,9 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Redireccionamiento de login
 LOGIN_URL = 'usuario:login'
 LOGIN_REDIRECT_URL = 'usuario:logout'
 LOGOUT_REDIRECT_URL = 'categoria:lista'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -135,3 +137,6 @@ STATICFILES_DIR = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Email en consola
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
