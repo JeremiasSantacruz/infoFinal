@@ -38,6 +38,9 @@
 
 <button class="btn btn-success mt-2" type="submit" >Ingresar</button>
 <input type="hidden" name="next" value="{{ next }}">
+<div>
+    <a href="{% url 'usuario:password_reset' %}">Olvidaste la contrasenia?</a>
+</div>
 </form>
 {% else %}
 <a href="{% url 'usuario:logout' %}"<div>{{user.username}} logeado </div></a>

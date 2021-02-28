@@ -1,7 +1,11 @@
+from django.contrib.auth.views import (LoginView, LogoutView,
+                                       PasswordResetDoneView,
+                                       PasswordResetView,
+                                       PasswordResetConfirmView,
+                                       PasswordResetCompleteView)
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView
-from django.contrib.auth.views import LoginView, LogoutView
 
 from .forms import RegistroUsuarioForm
 from .models import Usuario
@@ -20,4 +24,18 @@ class UsuarioLogin(LoginView): #Tengo que refactorar a LoginUsuario
 class UsuarioLogout(LogoutView):
     template_name = 'usuario/logout.html'
 
+class UsuarioResetPassword(PasswordResetView):
+    template_name = 'usuario/reset.html'
+    email_template_name = 'usuario/resetEmail.html'
+    subject_template_name = 'usuario/resetSujeto.txt'
+    success_url = reverse_lazy('usuario:pass_reset_done')
 
+class UsuarioResetPasswordDone(PasswordResetDoneView):
+    template_name = 'usuario/resetDone.html'
+
+class UsuarioConfirmacionReset(PasswordResetConfirmView):
+    template_name = 'usuario/passConfirm.html'
+    success_url = reverse_lazy('usuario:pass_complete')
+
+class UsuarioConfirmacionDone(PasswordResetCompleteView):
+    template_name = 'usuario/passCompletado.html'

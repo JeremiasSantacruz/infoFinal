@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %} Email enviado! {% endblock %}
+
+{% block content %}
+
+<div class="col-6 card bg-light mx-auto mt-2 text-center">
+    Contrasenia cambiada!!
+    <a href="{% url 'usuario:login' %}">
+    <button class="btn btn-success mx-auto mb-2" value="Ir a login" >Volver a login</button></a>
+</div>
+
+{% endblock %}
