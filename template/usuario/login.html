@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %} login {% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>El nombre de usuario o la contrasenia estan al mal.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Tu cuenta no tiene acseso a esta pagina,
+    ingresa con una cuenta que tenga acseso.</p>
+    {% else %}
+    <p>Asi  ves la pagina</p>
+    {% endif %}
+{% endif %}
+
+<div class="card col-6 mx-auto mt-5 bg-light rounder border-dark">
+<div class="card-title bg-primary ">
+    <h1>Login</h1>
+</div>
+<div class="card-body" >
+{% if not user.is_authenticated %}
+    <form method="post" action="{% url 'usuario:login' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<button class="btn btn-success mt-2" type="submit" >Ingresar</button>
+<input type="hidden" name="next" value="{{ next }}">
+<div>
+    <a href="{% url 'usuario:password_reset' %}">Olvidaste la contrasenia?</a>
+    Si no tienes usuario entonces 
+    <a href="{% url 'usuario:registro' %}">Registrate!!</a>
+</div>
+</form>
+{% else %}
+<a href="{% url 'usuario:logout' %}"<div>{{user.username}} logeado </div></a>
+{% endif %}
+
+</div>
+</div>
+
+{% endblock %}

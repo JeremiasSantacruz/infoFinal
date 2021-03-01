@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %} Nuevo Usuario {% endblock %}
+
+{% block content %} 
+
+<div class="card bg-light col-6 mx-auto mt-5">
+    <div class="card-title bg-primary text-center">
+        <h1> Nueva contrasenia </h1>
+    </div>
+    <div class="card-body">
+        <form method="post">
+
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mt-2 mb-2">
+                {% if field.erros %}
+                <div class="alert alert-danger" role="alert">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+
+                {{ field.label_tag }} {{ field }}
+            </div>
+            {% endfor %}
+
+            <button class="btn btn-success  type="submit">Cambiar contrasenia</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

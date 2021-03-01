@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Redireccionamiento de login
+LOGIN_URL = 'usuario:login'
+LOGIN_REDIRECT_URL = 'categoria:lista'
+LOGOUT_REDIRECT_URL = 'categoria:lista'
 
 # Application definition
 
@@ -38,10 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.usuario',
     'apps.categoria',
 ]
 
-# User model
+
+# Name of the user
+AUTH_USER_MODEL = 'usuario.usuario'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -131,3 +139,6 @@ STATICFILES_DIR = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Email en consola
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
