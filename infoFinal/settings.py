@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Redireccionamiento de login
 LOGIN_URL = 'usuario:login'
-LOGIN_REDIRECT_URL = 'usuario:logout'
+LOGIN_REDIRECT_URL = 'categoria:lista'
 LOGOUT_REDIRECT_URL = 'categoria:lista'
 
 # Application definition

@@ -24,6 +24,11 @@ class UsuarioLogin(LoginView): #Tengo que refactorar a LoginUsuario
 class UsuarioLogout(LogoutView):
     template_name = 'usuario/logout.html'
 
+class Perfil(DetailView):
+    model = Usuario
+    template_name = 'usuario/perfil.html'
+    
+# Clases para la resetear la contrasenas
 class UsuarioResetPassword(PasswordResetView):
     template_name = 'usuario/reset.html'
     email_template_name = 'usuario/resetEmail.html'
