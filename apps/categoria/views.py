@@ -1,41 +1,53 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.views.generic import DetailView, ListView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+
 from .models import Categoria
 
+
 # Create your views here.
-class listaCategoria(ListView):
+class ListaCategoria(ListView):
+    """
+    Vista generica que lista todas las categorias
+    """
     model = Categoria
-    template_name = 'categoria_list.html'
     context_object_name ="categorias"
 
-class detalleCategoria(DetailView):
+class DetalleCategoria(DetailView):
+    """
+    Vista generica de detalle, listando todas las publicaciones
+    """
     model = Categoria
     template_name = 'categoria/detalleCategoria.html'
 
-class crearCategoria(CreateView):
+class CrearCategoria(CreateView):
+    """
+    Formulario generico, deprecaded
+    """
     model = Categoria
+    template_name = 'categoria/categoria_crear.html"
     fields = [
         'nombre',
         'desc',
     ]
 
-    def get_success_url(self, **kwargs):
-        return reverse_lazy('categoria:lista')
-
-class updateCategoria(UpdateView):
+class UpdateCategoria(UpdateView):
+    """
+    Formulario generico, deprecaded
+    """
     model = Categoria
+    template_name = 'categoria/categoria_actualizar.html'
     #success_url = reverse('categoria:lista')
     fields = [
         'nombre',
         'desc',
     ]
 
-    def get_success_url(self, **kwargs):
-        return reverse_lazy('categoria:lista')
-
-class deleteCategoria(DeleteView):
+class DeleteCategoria(DeleteView):
+    """
+    Formulario generico, deprecaded
+    """
     model = Categoria
     template_name = 'categoria/categoria_delete.html'
     success_url = reverse_lazy('categoria:lista')
