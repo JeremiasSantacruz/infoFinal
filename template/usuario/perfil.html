@@ -4,76 +4,70 @@
 
 {% block content %}
 <div class="row">
-<div class="col-4 card bg-ligth  mt-2">
-    <div class="card-header bg-primary">Perfil</div>
-    <div class="card-body bg-ligth">
+    <div class="col-4 card bg-ligth  mt-2">
+        <div class="card-header bg-primary">Perfil</div>
+        <div class="card-body bg-ligth">
 
-        <div class="row">
-        <div class="col-4">
-         <strong>Username: </strong>   
-        </div>
-        <div class="col">
-           {{usuario.username}} 
-        </div>
-        </div>
-
-        <div class="row">
-        <div class="col-4">
-         <strong>Nombre: </strong>   
-        </div>
-        <div class="col">
-            {{usuario.get_full_name}}
-        </div>
-        </div>
-
-        <div class="row">
-        <div class="col-4">
-         <strong>Zona: </strong>   
-        </div>
-        <div class="col">
-           {{usuario.zona}} 
-        </div>
-        </div>
-
-        <div class="row">
-        <div class="col-4">
-         <strong>Puntuacion: </strong>   
-        </div>
-        <div class="col">
-            {% if usuario.puntuacion != 0 %}
-                {{usuario.puntuacion}}
-            {% else %}
-                No puntuado
-            {% endif %}
-        </div>
-        </div>
-
-        <div class="row">
-            {% if user.id == usuario.id %}
-            <div class="col">
-                <a href="{% url 'usuario:actualizar' user.id %}">
-                <button class="btn btn-info">Actualizar</button></a>
+            <div class="row">
+                <div class="col-4">
+                    <strong>Username: </strong>
+                </div>
+                <div class="col">
+                    {{usuario.username}}
+                </div>
             </div>
-            <div class="col">
-            <form method="post" action="{% url 'usuario:logout' %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-info">Cerrar sesion</button>
-            </form>
+
+            <div class="row">
+                <div class="col-4">
+                    <strong>Nombre: </strong>
+                </div>
+                <div class="col">
+                    {{usuario.get_full_name}}
+                </div>
             </div>
-            {% endif %}
+
+            <div class="row">
+                <div class="col-4">
+                    <strong>Zona: </strong>
+                </div>
+                <div class="col">
+                    {{usuario.zona}}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <strong>Puntuacion: </strong>
+                </div>
+                <div class="col">
+                    {% if usuario.puntuacion != 0 %}
+                    {{usuario.puntuacion}}
+                    {% else %}
+                    No puntuado
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="row">
+                {% if user.id == usuario.id %}
+                <div class="col">
+                    <a href="{% url 'usuario:actualizar' user.id %}">
+                        <button class="btn btn-info">Actualizar</button></a>
+                </div>
+                <div class="col">
+                    <form method="post" action="{% url 'usuario:logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-info">Cerrar sesion</button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+
         </div>
+    </div>
+    <div class="col-8">
+        Por implementar
 
     </div>
-</div>
-<div class="col-8">
-    Por implementar
-    <!-- <div class="row">
-        {% include "usuario/login.html" %}
-    </div>
-    <div class="row">
-        {% include "usuario/login.html" %}
-    </div> -->
-</div>
-</div>
 </div>
 {% endblock %}

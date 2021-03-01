@@ -6,6 +6,8 @@ from django.urls import reverse
 class Usuario(AbstractUser):
     puntuacion = models.IntegerField(default=0)
     zona = models.CharField(max_length=70)
+    # postulante = models.ForeignKey('publicacion.Publicacion', on_delete=models.CASCADE,
+    #                                 related_name='postulantes')
     
     REQUIRED_FIELDS = ['first_name', 'last_name', 'zona' ]
 
