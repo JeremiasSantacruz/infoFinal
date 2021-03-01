@@ -5,15 +5,20 @@
 {% block content %} 
 
 <div class="card bg-light col-6 mx-auto mt-5">
-    <div class="card-title bg-info text-center">
+    <div class="card-title bg-primary text-center">
         <h1> Nuevo usuario </h1>
     </div>
     <div class="card-body">
         <form method="post">
             {% csrf_token %}
             {% for field in form %}
-            <div class="fieldWrapper mt-2 mb-2">
-                {{ field.errors }}
+            <div class="mt-2 mb-2">
+                {% if field.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+
                 {{ field.label_tag }} {{ field }}
             </div>
             {% endfor %}
