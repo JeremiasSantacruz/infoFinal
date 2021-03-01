@@ -50,8 +50,16 @@
 
         <div class="row">
             {% if user.id == usuario.id %}
-            <a href="{% url 'usuario:actualizar' user.id %}">
-            <button class="btn btn-info">Actualizar</button></a>
+            <div class="col">
+                <a href="{% url 'usuario:actualizar' user.id %}">
+                <button class="btn btn-info">Actualizar</button></a>
+            </div>
+            <div class="col">
+            <form method="post" action="{% url 'usuario:logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-info">Cerrar sesion</button>
+            </form>
+            </div>
             {% endif %}
         </div>
 
