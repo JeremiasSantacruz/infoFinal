@@ -26,7 +26,7 @@ class CrearCategoria(CreateView):
     Formulario generico, deprecaded
     """
     model = Categoria
-    template_name = 'categoria/categoria_crear.html"
+    template_name = 'categoria/categoria_crear.html'
     fields = [
         'nombre',
         'desc',
