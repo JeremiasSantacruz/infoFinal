@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} {{publicacion.titulo}} {% endblock %}
+
+{% block content %}
+<div class="col-10 mx-auto mt-2">
+    <div class="card bg-ligth">
+        <div class="card-header bg-primary text-white ">
+            {{publicacion.titulo}}
+        </div>
+        <div class="card-subtitle text-muted">
+            Publicado por {{publicacion.creador.get_full_name}}
+        </div>
+        <div class="card-text">
+            <p>{{publicacion.descripcion}}</p>
+            <p>Zona: {{publicacion.creador.zona}}</p>
+        </div>
+        {% if user.is_authenticated %}
+            {% if user.id != publicacion.id %}
+            <form method="post" action="{% url 'publicacion:detalle' publicacion.id %}">
+                {% csrf_token %}
+                <button class="btn btn-success" type="submit">Postularse</button>
+            </form>
+            {% else %}
+                <a class="btn btn-info" href="#" role="button" >Actualizar</a>
+                <a class="btn btn-warning" href="#" role="button">Finalizar</a>
+
+            {% endif %}
+        {% endif %}
+        <div class="card-footer">
+            {{publicacion.fecha}}
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

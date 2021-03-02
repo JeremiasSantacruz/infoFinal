@@ -4,36 +4,34 @@
 
 {% block content %}
 <div class='rounder'>
-    <h1 class='text-center m-2 '> {{categoria.nombre}} </h1>
+  <h1 class='text-center m-2 '> {{categoria.nombre}} </h1>
 </div>
 <div class="text-right">
 
-  <a href="{% url 'categoria:actualizar' categoria.id %}">
-    <button type="button" class="btn btn-info ml-2" >Actualizar</button>
-  </a>
-  <a href="{% url 'categoria:eliminar' categoria.id %}"
-    <button type="button" class="btn btn-warning" > Eliminar </button>
-  </a>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripcion</th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in categoria.publicaciones.all %}
+        <tr>
+          <th scope="row" "> {{p.titulo}} </th>
+          <td>{{p.descripcion}}</td>
+          <td><a hrefs="{% url 'publicacion:detalle' p.id %}" class="btn btn-info" role="button">
+            Ir</a></td>
+        </tr>
+        {% empty %}
 
-<div class="container">
-    {% for p in categoria.publicacion_set.all %}
-    
-    <div class="row border" >
-        <div class='col p-1'>
-        <a href="{% url 'publicacion:detalle' p.id %} >
-            {{p.id}}
-        </a>
-        </div>        
-      <div class="col p-2">
-        {{p.titulo}}
-      </div>
-      <div class="col p-6"> 
-        {{p.desc}}
-        </div>
-    </div>
-    {% empty %}
-    <div class=" col-6 mx-auto mt-2">
-      <h3>Nada por aqui</h3>
-    </div>
-    {% endfor %}
-{% endblock %}
+        <tr class=" col-6 mx-auto mt-2">
+          <h3>Nada por aqui</h3>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endblock %}
