@@ -2,13 +2,15 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
 
+class UsuarioManager(models.Manager):
+    def finalizadas(self):
+        return super(UsuarioManager, self).get_queryset().filter(responsable__isnull=False)
 # Create your models here.
 class Usuario(AbstractUser):
     puntuacion = models.IntegerField(default=0)
     zona = models.CharField(max_length=70)
-    # postulante = models.ForeignKey('publicacion.Publicacion', on_delete=models.CASCADE,
-    #                                 related_name='postulantes')
-    
+    objects = UsuarioManager()
+
     REQUIRED_FIELDS = ['first_name', 'last_name', 'zona' ]
 
     def __str__(self):

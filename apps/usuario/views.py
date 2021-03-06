@@ -25,9 +25,18 @@ class UsuarioLogout(LogoutView):
     template_name = 'usuario/logout.html'
 
 # Vista de usuario
-class Perfil(DetailView):
+class Perfil(LoginRequiredMixin, DetailView):
     model = Usuario
     template_name = 'usuario/perfil.html'
+
+class FinalizadasUsuario(LoginRequiredMixin, DetailView):
+    model = Usuario
+    template_name = 'usuario/listafinalizados.html'
+
+    # def get_queryset(self, **kwargs):
+    #     queryset = Usuario.objects.filter(id=self.kwargs['pk'], 
+    #                                         responsable__isnull=True)
+    #     return queryset
     
 class ActualizarUsuario(LoginRequiredMixin, UpdateView):
     login_url = 'user/login.html'

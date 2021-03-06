@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Elige el responsable{% endblock %}
+
+{% block content %}
+<div class="col-10 mx-auto mt-2">
+<div class="card  mx-auto mt-2 bg-ligth">
+    <div class="card-header bg-primary">
+        Postulantes
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            {% if field.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+            {% for postulante in publicacion.postulantes.all %}
+            <div class="form-check">
+                <input class="form-check-input" 
+                    type="checkbox" value="{{postulante.id}}"
+                    id="flexCheckDefault"
+                    name="responsable">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{postulante.get_full_name}}
+                </label>
+              </div>
+            {% endfor %}
+            <button class="btn btn-success" type="submit">Finalizar</button>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}

@@ -4,7 +4,8 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-4 card bg-ligth  mt-2">
+    <div class="col-sm">
+    <div class="card bg-ligth mt-2">
         <div class="card-header bg-primary">Perfil</div>
         <div class="card-body bg-ligth">
 
@@ -60,13 +61,20 @@
                         <button type="submit" class="btn btn-info">Cerrar sesion</button>
                     </form>
                 </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col">
+                    <a href="{% url 'usuario:finalizadas' user.id %}">
+                        <button class="btn btn-info">Publicacion finalizadas</button></a>
+                </div>
                 {% endif %}
             </div>
 
         </div>
     </div>
-    <div class="col-8">
-        Por implementar
+    </div>
+    <div class="col-md ml-2">
+        {% include "publicacion/list.html" with publicaciones=usuario.publicaciones.all %}
 
     </div>
 </div>

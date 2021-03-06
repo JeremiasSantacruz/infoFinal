@@ -20,7 +20,7 @@ class DetalleCategoria(DetailView):
     """
     model = Categoria
     template_name = 'categoria/detalleCategoria.html'
-
+    
 class CrearCategoria(CreateView):
     """
     Formulario generico, deprecaded

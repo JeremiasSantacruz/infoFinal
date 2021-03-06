@@ -8,25 +8,40 @@
         <div class="card-header bg-primary text-white ">
             {{publicacion.titulo}}
         </div>
-        <div class="card-subtitle text-muted">
-            Publicado por {{publicacion.creador.get_full_name}}
-        </div>
-        <div class="card-text">
-            <p>{{publicacion.descripcion}}</p>
-            <p>Zona: {{publicacion.creador.zona}}</p>
-        </div>
-        {% if user.is_authenticated %}
-            {% if user.id != publicacion.id %}
-            <form method="post" action="{% url 'publicacion:detalle' publicacion.id %}">
-                {% csrf_token %}
-                <button class="btn btn-success" type="submit">Postularse</button>
-            </form>
-            {% else %}
-                <a class="btn btn-info" href="#" role="button" >Actualizar</a>
-                <a class="btn btn-warning" href="#" role="button">Finalizar</a>
+        <div class="card-body">
+            <div class="card-subtitle text-muted">
+                Publicado por <a href="{% url 'usuario:perfil' publicacion.creador.id%}">
+                    {{publicacion.creador.get_full_name}} </a>
+            </div>
 
-            {% endif %}
-        {% endif %}
+            <div class="card-text">
+                <p>{{publicacion.descripcion}}</p>
+                <p>Zona: {{publicacion.creador.zona}}</p>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    {% if user.is_authenticated %}
+                    {% if user.id != publicacion.creador.id %}
+                    <div class="col-sm">
+                        <form method="post" action="{% url 'publicacion:postularse' publicacion.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="postulantes" value="{{user.id}}">
+                            <button class="btn btn-success" type="submit">Postularse</button>
+                        </form>
+                    </div>
+                    {% else %}
+                    <div class="col-sm text-left mr-2">
+                        <a href="{% url 'publicacion:actualizar' publicacion.id %}">
+                            <button class="btn btn-info" type="submit">Actualizar</button>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                </div>
+                </container>
+            </div>
+        </div>
         <div class="card-footer">
             {{publicacion.fecha}}
         </div>
@@ -34,4 +49,25 @@
     </div>
 
 </div>
+{% if user.is_authenticated %}
+{% if user in publicacion.postulantes.all or user.id == publicacion.creador.id %}
+<div class="col-10 mx-auto mt-2">
+    <div class="card">
+        <div class="card-header bg-primary">Postulantes</div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                {% for postulante in publicacion.postulantes.all %}
+                <li class="list-group-item">{{postulante.get_full_name}}</li>
+                {% endfor %}
+            </ul>
+
+            {% if user.id == publicacion.creador.id %}
+            <a href="{% url 'publicacion:finalizar' publicacion.id %}" type="button" class="btn btn-warning">Finalizar</a>
+            <p>{{publicacion.responsable}}</p>
+            {% endif %} 
+        </div>
+    </div>
+    {% endif %}
+{% endif %}
+
 {% endblock %}
