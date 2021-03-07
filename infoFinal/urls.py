@@ -21,4 +21,5 @@ urlpatterns = [
     path('categoria/', include('apps.categoria.urls')),
     path('user/', include('apps.usuario.urls')),
     path('', include('apps.publicacion.urls')),
+    path('coment/', include('apps.comentarios.urls')),
 ]

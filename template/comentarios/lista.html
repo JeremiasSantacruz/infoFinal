@@ -1,0 +1,16 @@
+<div class="row">
+    {% for coment in comentarios %}
+        {% include "comentarios/card.html"%}
+    {% empty %}
+    <div class="col-3">
+    <div class="card bg-light mt-2">
+        <div class="card-header "> :( </div>
+        <div class="card-body">
+            <div class="card-text">
+                Ningun comentario por ahora. 
+            </div>
+        </div>
+    </div>
+    </div>
+    {% endfor %}
+</div>

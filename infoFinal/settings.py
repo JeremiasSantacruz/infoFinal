@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.usuario',
     'apps.categoria',
     'apps.publicacion',
+    'apps.comentarios',
 ]
 
 
