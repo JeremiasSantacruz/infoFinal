@@ -18,7 +18,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for p in categoria.ListaPublicaciones %}
+        {% for p in categoria.publicaciones.all %}
         <tr>
           <th scope="row" "> {{p.titulo}} </th>
           <td>{{p.descripcion}}</td>
