@@ -8,10 +8,6 @@ class PublicacionManager(models.Manager):
     def get_queryset(self):
         return super(PublicacionManager, self).get_queryset().filter(responsable=None)
 
-    # Devuelve todas las publiocaciones
-    def todas(self):
-        return super(PublicacionManager, self).get_queryset().all()
-        
     # Devuelve Publicaciones finalizadas    
     def finalizadas(self):
         return super(PublicacionManager, self).get_queryset().exclude(responsable=None)

@@ -33,10 +33,11 @@ class FinalizadasUsuario(LoginRequiredMixin, DetailView):
     model = Usuario
     template_name = 'usuario/listafinalizados.html'
 
-    # def get_queryset(self, **kwargs):
-    #     queryset = Usuario.objects.filter(id=self.kwargs['pk'], 
-    #                                         responsable__isnull=True)
-    #     return queryset
+
+    def get_queryset(self, **kwargs):
+        queryset = Usuario.objects.filter(id=self.kwargs['pk'], 
+                                            publicaciones__responsable__isnull=False)
+        return queryset
     
 class ActualizarUsuario(LoginRequiredMixin, UpdateView):
     login_url = 'user/login.html'
