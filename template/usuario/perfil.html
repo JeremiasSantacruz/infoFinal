@@ -5,49 +5,8 @@
 {% block content %}
 <div class="row">
     <div class="col-sm">
-    <div class="card bg-ligth mt-2">
-        <div class="card-header bg-primary">Perfil</div>
-        <div class="card-body bg-ligth">
-
-            <div class="row">
-                <div class="col-4">
-                    <strong>Username: </strong>
-                </div>
-                <div class="col">
-                    {{usuario.username}}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-4">
-                    <strong>Nombre: </strong>
-                </div>
-                <div class="col">
-                    {{usuario.get_full_name}}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-4">
-                    <strong>Zona: </strong>
-                </div>
-                <div class="col">
-                    {{usuario.zona}}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-4">
-                    <strong>Puntuacion: </strong>
-                </div>
-                <div class="col">
-                    {% if usuario.puntuacion != 0 %}
-                    {{usuario.puntuacion}}
-                    {% else %}
-                    No puntuado
-                    {% endif %}
-                </div>
-            </div>
+   
+        {% include "usuario/perfilCard.html" %}
 
             <div class="row">
                 {% if user.id == usuario.id %}
@@ -76,6 +35,7 @@
     <div class="col-md ml-2">
         {% include "publicacion/list.html" with publicaciones=usuario.publicaciones.all %}
 
+        {% include "comentarios/lista.html" with comentarios=usuario.comentariosRecibidos.all %}
     </div>
 </div>
 {% endblock %}

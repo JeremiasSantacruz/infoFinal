@@ -1,0 +1,45 @@
+<div class="card bg-ligth mt-2">
+    <div class="card-header bg-primary">Perfil</div>
+    <div class="card-body bg-ligth">
+
+        <div class="row">
+            <div class="col-4">
+                <strong>Username: </strong>
+            </div>
+            <div class="col">
+                {{usuario.username}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <strong>Nombre: </strong>
+            </div>
+            <div class="col">
+                {{usuario.get_full_name}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <strong>Zona: </strong>
+            </div>
+            <div class="col">
+                {{usuario.zona}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <strong>Puntuacion: </strong>
+            </div>
+            <div class="col">
+                {% if usuario.puntuacion_prom != 0 %}
+                {{usuario.puntuacion_prom}}
+                {% else %}
+                No puntuado
+                {% endif %}
+            </div>
+        </div>
+</div>
+</div>

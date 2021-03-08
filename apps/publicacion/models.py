@@ -38,7 +38,7 @@ class Publicacion(models.Model):
     responsable = models.ForeignKey(settings.AUTH_USER_MODEL,
                                     on_delete=models.DO_NOTHING, 
                                     related_name='responsable',
-                                    blank=True,)
+                                    blank=True, null=True)
     fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
     # chat = models.ForeignKey('Chat', on_delete=models.CASCADE)
 

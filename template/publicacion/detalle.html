@@ -62,12 +62,45 @@
             </ul>
 
             {% if user.id == publicacion.creador.id %}
-            <a href="{% url 'publicacion:finalizar' publicacion.id %}" type="button" class="btn btn-warning">Finalizar</a>
-            <p>{{publicacion.responsable}}</p>
-            {% endif %} 
+            <a href="{% url 'publicacion:finalizar' publicacion.id %}" type="button"
+                class="btn btn-warning">Finalizar</a>
+            <!-- <p>{{publicacion.responsable}}</p> -->
+            {% endif %}
         </div>
     </div>
-    {% endif %}
+</div>
+{% endif %}
+<div class="col-10 mx-auto mt-2">
+    <!-- <div class="row"> -->
+    <div class="card">
+        <div class="card-header">Comentarios</div>
+        {% if user.id != publicacion.creador.id %}
+        <div class="card-body">
+            <form method="post" action="{% url 'comentario:nuevo' %}">
+            {% csrf_token %}
+            <label for="ComentarioTextarea">Comentarios</label>
+            <textarea name="texto" class="form-control" placeholder="Deja un comentario" id="ComentarioTextarea" ></textarea>
+            <label for="puntuacionCom">Puntuacion</label>
+            <input type="range" class="form-range" min="1" max="10" step="1" id="puntuacionCom" name="puntuacion" default="7">
+            <input type="hidden" name="pub" value="{{publicacion.id}}">
+            <input type="hidden" name="hacia" value="{{publicacion.creador.id}}">
+            <button type="submit" class="btn btn-success">Comentar</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+    <!-- </div> -->
+    {% for coment in publicacion.comentarios.all %}
+        <div class="card">
+            <div class="card-body">
+                {{coment.texto}}
+            </div>
+            <div class="footer text-muted">
+                {{coment.autor}}
+            </div>
+        </div>
+    {% endfor %}
+</div>
 {% endif %}
 
 {% endblock %}

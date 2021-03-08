@@ -22,3 +22,9 @@ class Usuario(AbstractUser):
         Obtengo la url del objeto
         """
         return reverse('usuario:perfil', kwargs={'pk':self.pk} )
+    
+    def puntuacion_prom(self):
+        puntuacion = 0
+        for coment in self.comentariosRecibidos.all():
+            puntuacion = coment.puntuacion + puntuacion
+        return puntuacion/self.comentariosRecibidos.count()
