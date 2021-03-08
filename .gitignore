@@ -153,3 +153,4 @@ dmypy.json
 
 **/migrations/
 scriptDB/
+.pylyntrc

@@ -91,7 +91,7 @@
     </div>
     <!-- </div> -->
     {% for coment in publicacion.comentarios.all %}
-        <div class="card">
+        <div class="card mt-2">
             <div class="card-body">
                 {{coment.texto}}
             </div>
@@ -102,5 +102,9 @@
     {% endfor %}
 </div>
 {% endif %}
-
+    {% if user.id != publicacion.creador.id %}
+        <div class="col-10 mx-auto mt-2 text-muted">
+            <a href="{% url 'denuncias:crear' publicacion.id %}"> Denunciar</a>
+        </div>
+    {% endif %}
 {% endblock %}

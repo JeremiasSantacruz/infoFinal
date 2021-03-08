@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.categoria',
     'apps.publicacion',
     'apps.comentarios',
+    'apps.denuncias',
 ]
 
 
