@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %} Chat {% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="card" style="height: max-content;">
+        {% if user == chat.postulante %}
+            <div class="card-header">Chat con {{chat.pub.creador.get_full_name}}</div>
+        {% else %}
+            <div class="card-header">Chat con {{chat.postulante.get_full_name}}</div>
+        {% endif %}
+
+    <div class="card-body">
+        {% for mensaje in chat.mensajes.all %}
+            {% if user == mensaje.send %}
+                <div class="card-text text-left">
+                    {{mensaje.texto}}
+                </div>
+            {% else %}
+                <div class="card-text text-rigth">
+                    {{mensaje.texto}}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    </div>
+</div>
+<div class="row">
+    {% include "chat/mensaje.html" %}
+</div>
+{% endblock %}
