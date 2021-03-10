@@ -1,12 +1,11 @@
-<div class="card">
-    <div class="card-header bg-primary">Mensaje</div>
-    <div class="card-boyd">
-        <form method="POST" action="{% url 'chat:mensaje' chat.pub.id chat.postulante.id %}">
+<div class="card p-2 mx-auto">
+    <div class="card-header bg-light">Mensaje</div>
+    <div class="card-boyd bg-ligth">
+        <form method="POST" action="{% url 'chat:mensaje' chat.id %}">
             {% csrf_token %}
-            <label for="ComentarioTextarea">Mensaje</label>
-            <textarea name="texto" class="form-control"  id="ComentarioTextarea" ></textarea>
-            <input type="hidden" name="chat" value="{{chat.id}}" >
-            <button class="btn btn-success" type="submit">Enviar</button>
+            <textarea name="texto" class="form-control mt-2 p-2"  id="ComentarioTextarea" ></textarea>
+            <input type="hidden" name="log" value="{{chat.id}}">
+            <button class="btn btn-success text-center p-2 mx-auto mt-2" type="submit">Enviar</button>
         </form>
     </div>
 </div>

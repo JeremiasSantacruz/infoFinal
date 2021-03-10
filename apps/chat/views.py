@@ -7,12 +7,17 @@ from apps.chat.models import Chat, Mensaje
 # Create your views here.
 class VistaChat(DetailView):
     model = Chat
+    template_name = "chat/vista.html"
 
 class NuevoChat(CreateView):
     model = Chat
 
 class NuevoMensaje(CreateView):
     model = Mensaje
+    fields = ['texto', 'log']
+    template_name = 'chat/enviarMensaje.html'
 
-    def get_success_url(self):
-        return reverse('chat:vista', kwargs={'pub__id': self.chat.pub.id; 'post_id': self.chat.postulante.id})
+    def form_valid(self, form):
+        form.instance.send = self.request.user
+        return super(NuevoMensaje, self).form_valid(form)
+  

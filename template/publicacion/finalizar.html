@@ -19,11 +19,11 @@
             {% for postulante in publicacion.postulantes.all %}
             <div class="form-check">
                 <input class="form-check-input" 
-                    type="checkbox" value="{{postulante.id}}"
+                    type="checkbox" value="{{postulante.usuario.id}}"
                     id="flexCheckDefault"
                     name="responsable">
                 <label class="form-check-label" for="flexCheckDefault">
-                  {{postulante.get_full_name}}
+                  {{postulante.usuario.get_full_name}}
                 </label>
               </div>
             {% endfor %}
