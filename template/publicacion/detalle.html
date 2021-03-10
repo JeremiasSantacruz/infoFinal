@@ -23,13 +23,15 @@
                 <div class="row">
                     {% if user.is_authenticated %}
                     {% if user.id != publicacion.creador.id %}
+                        {% if not esPostulante %}
                     <div class="col-sm">
                         <form method="post" action="{% url 'publicacion:postularse' publicacion.id %}">
                             {% csrf_token %}
-                            <input type="hidden" name="postulantes" value="{{user.id}}">
+                            <input type="hidden" name="publicacion" value="{{publicacion.id}}">
                             <button class="btn btn-success" type="submit">Postularse</button>
                         </form>
                     </div>
+                        {% endif %}
                     {% else %}
                     <div class="col-sm text-left mr-2">
                         <a href="{% url 'publicacion:actualizar' publicacion.id %}">
@@ -50,14 +52,19 @@
 
 </div>
 {% if user.is_authenticated %}
-{% if user in publicacion.postulantes.all or user.id == publicacion.creador.id %}
+{% if esPostulante or user.id == publicacion.creador.id %}
 <div class="col-10 mx-auto mt-2">
     <div class="card">
         <div class="card-header bg-primary">Postulantes</div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
                 {% for postulante in publicacion.postulantes.all %}
-                <li class="list-group-item">{{postulante.get_full_name}}</li>
+                <li class="list-group-item">
+                    {{postulante.usuario.get_full_name}}
+                    {% if user.id == publicacion.creador.id %}
+                        <a href="{{postulante.chat.get_absolute_url}}" type="button" class="text-left">Chat</a>
+                    {% endif %}
+                </li>
                 {% endfor %}
             </ul>
 
@@ -65,6 +72,8 @@
             <a href="{% url 'publicacion:finalizar' publicacion.id %}" type="button"
                 class="btn btn-warning">Finalizar</a>
             <!-- <p>{{publicacion.responsable}}</p> -->
+            {% elif esPostulante %}
+            <a href="{% url 'chat:vista' esPostulante.get.chat.id %}" class="btn btn-warning">Chatear</a>
             {% endif %}
         </div>
     </div>
@@ -72,23 +81,7 @@
 {% endif %}
 <div class="col-10 mx-auto mt-2">
     <!-- <div class="row"> -->
-    <div class="card">
-        <div class="card-header">Comentarios</div>
-        {% if user.id != publicacion.creador.id %}
-        <div class="card-body">
-            <form method="post" action="{% url 'comentario:nuevo' %}">
-            {% csrf_token %}
-            <label for="ComentarioTextarea">Comentarios</label>
-            <textarea name="texto" class="form-control" placeholder="Deja un comentario" id="ComentarioTextarea" ></textarea>
-            <label for="puntuacionCom">Puntuacion</label>
-            <input type="range" class="form-range" min="1" max="10" step="1" id="puntuacionCom" name="puntuacion" default="7">
-            <input type="hidden" name="pub" value="{{publicacion.id}}">
-            <input type="hidden" name="hacia" value="{{publicacion.creador.id}}">
-            <button type="submit" class="btn btn-success">Comentar</button>
-            </form>
-        </div>
-        {% endif %}
-    </div>
+        {% include "comentarios/nuevoCard.html" %}
     <!-- </div> -->
     {% for coment in publicacion.comentarios.all %}
         <div class="card mt-2">
@@ -107,4 +100,5 @@
             <a href="{% url 'denuncias:crear' publicacion.id %}"> Denunciar</a>
         </div>
     {% endif %}
+{{publicacion.postulanteId.all}}
 {% endblock %}

@@ -1,0 +1,11 @@
+<div class="card p-2 mx-auto">
+    <div class="card-header bg-light">Mensaje</div>
+    <div class="card-boyd bg-ligth">
+        <form method="POST" action="{% url 'chat:mensaje' chat.id %}">
+            {% csrf_token %}
+            <textarea name="texto" class="form-control mt-2 p-2"  id="ComentarioTextarea" ></textarea>
+            <input type="hidden" name="log" value="{{chat.id}}">
+            <button class="btn btn-success text-center p-2 mx-auto mt-2" type="submit">Enviar</button>
+        </form>
+    </div>
+</div>

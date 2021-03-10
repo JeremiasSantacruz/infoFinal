@@ -30,8 +30,6 @@ class Publicacion(models.Model):
                                 default='1',
                                 related_name='publicaciones',
                                 )
-    postulantes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, 
-                                        related_name="postulantes")
     titulo = models.CharField(max_length=50)
     activa = models.BooleanField(default=True)
     descripcion = models.TextField(max_length=200)
@@ -40,7 +38,6 @@ class Publicacion(models.Model):
                                     related_name='responsable',
                                     blank=True, null=True)
     fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    # chat = models.ForeignKey('Chat', on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('publicacion:detalle', kwargs={'pk': self.pk})
@@ -48,4 +45,17 @@ class Publicacion(models.Model):
     def __str__(self):
         return self.titulo
     
+class Postulante(models.Model):
+    publicacion = models.ForeignKey('publicacion.Publicacion', on_delete=models.CASCADE,
+                                    related_name='postulantes')
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
+    chat = models.ForeignKey('chat.Chat', on_delete=models.CASCADE, related_name='datos')
     
+    class Meta:
+        unique_together = ('publicacion', 'usuario')
+   
+    def get_absolute_url(self):
+        return reverse('publicacion:detalle', kwargs={'pk': self.publicacion.id}) 
+    
+    def __str__(self):
+        return self.usuario.get_full_name() + ' Postulante para ' + self.publicacion.titulo

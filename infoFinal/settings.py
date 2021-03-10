@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.publicacion',
     'apps.comentarios',
     'apps.denuncias',
+    'apps.chat',
 ]
 
 
